@@ -36,9 +36,6 @@ function App() {
               </div>
             )
         }
-
-
-
       </div>
 
 
