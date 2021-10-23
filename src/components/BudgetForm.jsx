@@ -4,7 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min'
 import { Error } from './Error'
 
 
-const BudgetForm = ({ setBudget, setRest }) => {
+const BudgetForm = ({ setBudget, setRest, setShowBudgetForm }) => {
 
   const [amount, setAmount] = useState(0)
   const [error, setError] = useState(false);
@@ -24,6 +24,7 @@ const BudgetForm = ({ setBudget, setRest }) => {
     setError(false)
     setBudget(amount)
     setRest(amount)
+    setShowBudgetForm(false)
   }
 
   return (

@@ -7,26 +7,38 @@ function App() {
 
   const [budget, setBudget] = useState(0)
   const [rest, setRest] = useState(0)
+  const [showBudgetForm, setShowBudgetForm] = useState(true)
 
   return (
     <div className="container">
-      <h1>Presupuesto</h1>
+      <h1>Budget</h1>
 
-      <div className="contenido-principal contenido">
-        <BudgetForm
-          setBudget={setBudget}
-          setRest={setRest}
-        />
+      <div className="main-content content">
 
-        <div className="row">
-          <div className="one-half column">
-            <Form />
-          </div>
+        {
+          showBudgetForm ?
+            (
+              <BudgetForm
+                setBudget={setBudget}
+                setRest={setRest}
+                setShowBudgetForm={setShowBudgetForm}
+              />
+            ) :
+            (
+              <div className="row">
+                <div className="one-half column">
+                  <Form />
+                </div>
 
-          <div className="one-half column">
-            2
-          </div>
-        </div>
+                <div className="one-half column">
+                  2
+                </div>
+              </div>
+            )
+        }
+
+
+
       </div>
 
 
