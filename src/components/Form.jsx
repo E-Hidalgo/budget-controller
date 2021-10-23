@@ -1,17 +1,25 @@
 import React, { useState } from 'react'
 
+import { Error } from './Error'
 
 
 const Form = () => {
 
   const [name, setName] = useState("")
   const [amount, setAmount] = useState(0)
+  const [error, setError] = useState(false)
 
   const addExpense = (e) => {
     e.preventDefault()
+
+    if (amount < 1 || isNaN(amount) || name.trim() === "")
+      setError(true)
+    return
   }
 
   return (
+
+
     <form
       onSubmit={addExpense}
     >
@@ -36,6 +44,8 @@ const Form = () => {
             value={amount}
             onChange={e => setAmount(parseInt(e.target.value))}
           />
+          {error ? <Error message="Incorrect Name or Budget" /> : null}
+
         </div>
         <input
           type="submit"
