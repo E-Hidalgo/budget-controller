@@ -8,6 +8,14 @@ function App() {
   const [budget, setBudget] = useState(0)
   const [rest, setRest] = useState(0)
   const [showBudgetForm, setShowBudgetForm] = useState(true)
+  const [expensesList, setExpensesList] = useState([])
+
+
+  const addNewExpense = (expense) => {
+    setExpensesList(
+      [...expensesList, expense]
+    )
+  }
 
   return (
     <div className="container">
@@ -27,11 +35,17 @@ function App() {
             (
               <div className="row">
                 <div className="one-half column">
-                  <Form />
+                  <Form
+                    addNewExpense={addNewExpense}
+                  />
                 </div>
 
                 <div className="one-half column">
-                  2
+                  {expensesList.map(expense => (
+                    <>
+                      <li>{expense.name} {expense.amount} </li>
+                    </>
+                  ))}
                 </div>
               </div>
             )

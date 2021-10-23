@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-
+import uuid from "react-uuid"
 import { Error } from './Error'
 
 
-const Form = () => {
+const Form = ({ addNewExpense }) => {
 
   const [name, setName] = useState("")
   const [amount, setAmount] = useState(0)
@@ -12,14 +12,23 @@ const Form = () => {
   const addExpense = (e) => {
     e.preventDefault()
 
-    if (amount < 1 || isNaN(amount) || name.trim() === "")
+    if (amount < 1 || isNaN(amount) || name.trim() === "") {
       setError(true)
-    return
+      return
+    }
+
+    const expense = {
+      name,
+      amount,
+      id: uuid()
+    }
+    addNewExpense(expense)
+
+    setName("")
+    setAmount(0)
   }
 
   return (
-
-
     <form
       onSubmit={addExpense}
     >
