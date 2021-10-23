@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { BudgetControl } from './components/BudgetControl';
 import BudgetForm from "./components/BudgetForm";
 import ExpensesList from './components/ExpensesList';
 import Form from './components/Form';
@@ -10,13 +11,22 @@ function App() {
   const [rest, setRest] = useState(0)
   const [showBudgetForm, setShowBudgetForm] = useState(true)
   const [expensesList, setExpensesList] = useState([])
+  const [expense, setExpense] = useState([])
+  const [createExpense, setCreateExpense] = useState(false)
+
+  useEffect(() => {
+
+    if (createExpense) {
+      setExpensesList([...expensesList, expense])
+
+      const restOfBudget = rest - expense.amount
+      setRest(restOfBudget)
+    }
+
+  }, [setExpensesList, expense]);
 
 
-  const addNewExpense = (expense) => {
-    setExpensesList(
-      [...expensesList, expense]
-    )
-  }
+
 
   return (
     <div className="container">
@@ -37,12 +47,16 @@ function App() {
               <div className="row">
                 <div className="one-half column">
                   <Form
-                    addNewExpense={addNewExpense}
+                    setExpense={setExpense}
+                    setCreateExpense={setCreateExpense}
                   />
+
                 </div>
 
                 <div className="one-half column">
                   <ExpensesList expensesList={expensesList} />
+                  <BudgetControl budget={budget} rest={rest} />
+
                 </div>
               </div>
             )

@@ -1,4 +1,5 @@
 import React from 'react'
+import uuid from "react-uuid"
 import { Expense } from './Expense'
 
 const ExpensesList = ({ expensesList }) => {
@@ -6,7 +7,7 @@ const ExpensesList = ({ expensesList }) => {
     <div className="gastos-realizados">
       {expensesList.map(expense => (
 
-        <Expense expense={expense} />
+        <Expense key={uuid()} expense={expense} />
 
       ))}
     </div>

@@ -3,7 +3,7 @@ import uuid from "react-uuid"
 import { Error } from './Error'
 
 
-const Form = ({ addNewExpense }) => {
+const Form = ({ setExpense, setCreateExpense }) => {
 
   const [name, setName] = useState("")
   const [amount, setAmount] = useState(0)
@@ -22,7 +22,8 @@ const Form = ({ addNewExpense }) => {
       amount,
       id: uuid()
     }
-    addNewExpense(expense)
+    setExpense(expense)
+    setCreateExpense(true)
 
     setName("")
     setAmount(0)
@@ -47,7 +48,7 @@ const Form = ({ addNewExpense }) => {
         <div className="campo">
           <label>Expense Amount</label>
           <input
-            type="text"
+            type="number"
             className="u-full-width"
             placeholder="Ex. 300"
             value={amount}

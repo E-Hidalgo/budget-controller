@@ -34,7 +34,7 @@ const BudgetForm = ({ setBudget, setRest, setShowBudgetForm }) => {
       {error ? <Error message="Budget is incorrect" /> : null}
       <form onSubmit={addBudget}>
         <input
-          type="text"
+          type="number"
           className="u-full-width"
           placeholder="Introduce your budget"
           onChange={defineBudget}
