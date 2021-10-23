@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import BudgetForm from "./components/BudgetForm";
+import ExpensesList from './components/ExpensesList';
 import Form from './components/Form';
 
 
@@ -41,11 +42,7 @@ function App() {
                 </div>
 
                 <div className="one-half column">
-                  {expensesList.map(expense => (
-                    <>
-                      <li>{expense.name} {expense.amount} </li>
-                    </>
-                  ))}
+                  <ExpensesList expensesList={expensesList} />
                 </div>
               </div>
             )
